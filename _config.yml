@@ -1,45 +1,24 @@
-markdown: kramdown
-encoding:     "utf-8"
-show_drafts: false
-future:      false
-unpublished: false
-exclude: [TODO.md,Gemfile,Gemfile.lock]
-gems:
-  - jemoji
-  - jekyll-gist
-  - jekyll-mentions
-  - jekyll-seo-tag
-  - jekyll-sitemap
+title: PRESENTAZIONE TITOLO # Titolo della Presentazione
 
-collections:
-  - slides
-defaults:
-  - scope:
-      path: "_slides"
-      type: slides
-    values:
-      output: false
-
-title: PRESENTAZIONE TITOLO
-
-author :
+author : # Informazioni sull'autore
   name : AleRitty
   email : aleritty@aleritty.net
   website: https://www.aleritty.net
 
-description: > # this means to ignore newlines until "baseurl:"
+description: > # Una descrizione della presentazione
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
-baseurl: '/present' # the subpath of your site, e.g. /blog
-url: "https://aleritty.github.io" # the base hostname & protocol for your site
 
-timezone: Europe/Rome
+baseurl: '/present'
+url: "https://aleritty.github.io"
 
-template: web-2.0
-transition-template: cube
+timezone: Europe/Rome # Non utilissimo ma in alcuni casi può servire
 
-extensions:
+template: web-2.0 # Il template delle slide, elimina quelli che non utilizzi
+transition-template: cube # Il template delle transizioni, elimina quelli che non utilizzi
+
+extensions: # elenco delle estensioni attivabili, commenta per disattivare
   - goto
   - menu
   - navigation
@@ -50,7 +29,32 @@ extensions:
   - search
   - automatic
 
-automaticSettings:
+automaticSettings: #automatic può ricevere queste opzioni...
   startRunning: false
   cycle: false
   slideDuration: 1000
+
+gems: # plugin utilizzabili tramite github pages
+  - jemoji
+  - jekyll-gist
+  - jekyll-mentions
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+######### NON TOCCARE SOTTO QUESTA LINEA SE NON SAI COSA STAI FACENDO ##########
+
+markdown: kramdown
+encoding:     "utf-8"
+show_drafts: false
+future:      false
+unpublished: false
+exclude: [TODO.md,Gemfile,Gemfile.lock]
+
+collections:
+  - slides
+defaults:
+  - scope:
+      path: "_slides"
+      type: slides
+    values:
+      output: false
