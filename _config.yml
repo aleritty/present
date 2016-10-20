@@ -1,0 +1,56 @@
+markdown: kramdown
+encoding:     "utf-8"
+show_drafts: false
+future:      false
+unpublished: false
+exclude: [TODO.md,Gemfile,Gemfile.lock]
+gems:
+  - jemoji
+  - jekyll-gist
+  - jekyll-mentions
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+collections:
+  - slides
+defaults:
+  - scope:
+      path: "_slides"
+      type: slides
+    values:
+      output: false
+
+title: PRESENTAZIONE TITOLO
+
+author :
+  name : AleRitty
+  email : aleritty@aleritty.net
+  website: https://www.aleritty.net
+
+description: > # this means to ignore newlines until "baseurl:"
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+baseurl: '' # the subpath of your site, e.g. /blog
+url: "http://localhost:4000" # the base hostname & protocol for your site
+
+timezone: Europe/Rome
+
+template: web-2.0
+transition-template: cube
+
+extensions:
+  - goto
+  - menu
+  - navigation
+  - status
+  - scale
+  - blank
+  - zoom
+  - search
+  - automatic
+
+automaticSettings:
+  startRunning: false
+  cycle: false
+  slideDuration: 1000

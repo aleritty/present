@@ -1,0 +1,79 @@
+---
+---
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+  <meta author="{{ site.author.name }}">
+
+  <title>{{ site.title }}</title>
+  <link rel="stylesheet" media="screen" href="{{site.url}}{{site.baseurl}}/assets/core/deck.core.css">
+
+  {% for ext in site.extensions %}
+  <link rel="stylesheet" media="screen" href="{{site.url}}{{site.baseurl}}/assets/extensions/{{ext}}/deck.{{ext}}.css">
+  {% endfor %}
+
+  <link rel="stylesheet" media="screen" href="{{site.url}}{{site.baseurl}}/assets/themes/style/{{ site.template }}.css">
+  <link rel="stylesheet" media="screen" href="{{site.url}}{{site.baseurl}}/assets/themes/transition/{{ site.transition-template }}.css">
+  <link rel="stylesheet" media="print" href="{{site.url}}{{site.baseurl}}/assets/core/print.css">
+  <script src="{{site.url}}{{site.baseurl}}/assets/libs/modernizr.custom.js"></script>
+</head>
+<body>
+  <div class="deck-container">
+
+{% for slide in site.slides %}
+<section class="slide" {{ slide.attrs }} id="sl{{ slide.date | date: "%M" }}-{{ slide.title }}">
+{{ slide.content }}
+</section>
+{% endfor %}
+
+{% if site.extensions contains "navigation" %}
+    <div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    </div>
+{% endif %}
+{% if site.extensions contains "status" %}
+    <p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+{% endif %}
+{% if site.extensions contains "goto" %}
+    <form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form>
+{% endif %}
+{% if site.extensions contains "automatic" %}
+    <div class='deck-automatic-link' title="Play/Pause">Play/Pause</div>
+{% endif %}
+  </div>
+<script src="{{site.url}}{{site.baseurl}}/assets/libs/jquery.min.js"></script>
+<script src="{{site.url}}{{site.baseurl}}/assets/core/deck.core.js"></script>
+
+{% for ext in site.extensions %}
+<script src="{{site.url}}{{site.baseurl}}/assets/extensions/{{ext}}/deck.{{ext}}.js"></script>
+{% endfor %}
+
+<script>
+  $(function() {
+    {% if site.extensions contains "automatic" %}
+    $.extend(true, $.deck.defaults, {
+      automatic: {
+        startRunning: {{ site.automaticSettings.startRunning }},
+        cycle: {{ site.automaticSettings.cycle }},
+        slideDuration: {{ site.automaticSettings.slideDuration }}
+      }
+    });
+    {% endif %}
+    $.deck('.slide');
+  });
+</script>
+</body>
+</html>
